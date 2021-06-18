@@ -33,23 +33,23 @@ exports.handler = async function (event, context) {
         const userInfo = decodeJwt(payload.token);
         const message = {
             embed: {
-                title: "New appeal submitted!",
+                title: "Ein neuer Antrag wurde eingereicht!",
                 timestamp: new Date().toISOString(),
                 fields: [
                     {
-                        name: "Submitter",
+                        name: "Antragssteller",
                         value: `<@${userInfo.id}> (${userInfo.username}#${userInfo.discriminator})`
                     },
                     {
-                        name: "Why were you banned?",
+                        name: "Wieso wurden Sie gebannt?",
                         value: payload.banReason.slice(0, MAX_EMBED_FIELD_CHARS)
                     },
                     {
-                        name: "Why do you feel you should be unbanned?",
+                        name: "Warum denken Sie, dass wir Sie entbannen sollten?",
                         value: payload.appealText.slice(0, MAX_EMBED_FIELD_CHARS)
                     },
                     {
-                        name: "What will you do to avoid being banned in the future?",
+                        name: "Was werden Sie tun, um in der Zukunft nicht gebannt zu werden?",
                         value: payload.futureActions.slice(0, MAX_EMBED_FIELD_CHARS)
                     }
                 ]
@@ -61,7 +61,7 @@ exports.handler = async function (event, context) {
                 const ban = await getBan(userInfo.id, process.env.GUILD_ID, process.env.DISCORD_BOT_TOKEN);
                 if (ban !== null && ban.reason) {
                     message.embed.footer = {
-                        text: `Original ban reason: ${ban.reason}`.slice(0, MAX_EMBED_FOOTER_CHARS)
+                        text: `Original Banngrund: ${ban.reason}`.slice(0, MAX_EMBED_FOOTER_CHARS)
                     };
                 }
             } catch (e) {
@@ -74,7 +74,7 @@ exports.handler = async function (event, context) {
                     userId: userInfo.id
                 };
     
-                message.embed.description = `[Approve appeal and unban user](${unbanUrl.toString()}?token=${encodeURIComponent(createJwt(unbanInfo))})`;
+                message.embed.description = `[Annehmen und Benutzer entbannen](${unbanUrl.toString()}?token=${encodeURIComponent(createJwt(unbanInfo))})`;
             }
         }
 
