@@ -61,11 +61,11 @@
 
             const params = new URLSearchParams(document.location.search.substring(1));
             if (!params.has("state") || !params.has("token")) {
-                window.location.href = `/error?msg=${encodeURIComponent("Missing state or token")}`;
+                window.location.href = `/error?msg=${encodeURIComponent("Fehlender Status oder Token")}`;
             }
 
             if (params.get("state") !== localStorage.getItem("state")) {
-                window.location.href = `/error?msg=${encodeURIComponent("Invalid state")}`;
+                window.location.href = `/error?msg=${encodeURIComponent("Ungültiger Status")}`;
             }
 
             const jwt = params.get("token");
