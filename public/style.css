@@ -23,7 +23,8 @@ button, a.btn {
 }
 
 button:hover, a.btn:hover {
-    background-color: #677bc4 !important;
+    background-color: #6E5CFF !important;
+    /*background-color: #677bc4 !important;*/
 }
 
 button:active, a.btn:active {
